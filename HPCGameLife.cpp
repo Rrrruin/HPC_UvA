@@ -29,12 +29,6 @@ HPCGameLife::~HPCGameLife()
 	}
 }
 
-// void HPCGameLife::ExportGameLife(HPCGameLifeData &HPCGameLifeData)
-// {
-// 	HPCGameLifeData.ulMapSideLength = m_ulMapSideLength;
-// 	HPCGameLifeData.Map = (CoordinateStatus *)calloc(m_ulMapSideLength, m_ulMapSideLength * sizeof(CoordinateStatus));
-// 	memcpy(HPCGameLifeData.Map, m_mapLife, m_ulMapSideLength * m_ulMapSideLength * sizeof(CoordinateStatus));
-// }
 
 std::string HPCGameLife::GetLifeMap()
 {
@@ -116,11 +110,7 @@ void HPCGameLife::SkipOneTime()
 		uiAliveNum += WhetherAlive(ulCoordinatesNodeX, ulCoordinatesNodeY - 1);
 		uiAliveNum += WhetherAlive(ulCoordinatesNodeX + 1, ulCoordinatesNodeY - 1);
 		uiAliveNum += WhetherAlive(ulCoordinatesNodeX - 1, ulCoordinatesNodeY - 1);
-		if (m_mapLife[i] == COORDINATE_STATUS_NON_SPACE)
-		{
-			m_mapNextTimeLife[i] = COORDINATE_STATUS_NON_SPACE;
-		}
-		else if (uiAliveNum == 3)
+		if (uiAliveNum == 3)
 		{
 			m_mapNextTimeLife[i] = COORDINATE_STATUS_ALIVE;
 		}
@@ -149,18 +139,6 @@ void HPCGameLife::RandomSetMap()
 	CoordinateStatus status[] = { COORDINATE_STATUS_ALIVE, COORDINATE_STATUS_DEATH };
 	int statusSize = sizeof(status) / sizeof(CoordinateStatus);
 	
-	srand((unsigned)time(NULL));
-	for (unsigned long i = 0; i < m_ulMapSideLength * m_ulMapSideLength; i++)
-	{
-		m_mapLife[i] = status[rand() % statusSize];
-	}
-}
-
-void HPCGameLife::RandSetNoSpace()
-{
-	CoordinateStatus status[] = { COORDINATE_STATUS_ALIVE, COORDINATE_STATUS_DEATH, COORDINATE_STATUS_NON_SPACE};
-	int statusSize = sizeof(status) / sizeof(CoordinateStatus);
-
 	srand((unsigned)time(NULL));
 	for (unsigned long i = 0; i < m_ulMapSideLength * m_ulMapSideLength; i++)
 	{
