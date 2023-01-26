@@ -12,8 +12,6 @@ enum CoordinateStatus
 {
 	COORDINATE_STATUS_ALIVE = 1,
 	COORDINATE_STATUS_DEATH,
-	COORDINATE_STATUS_NON_SPACE,
-	COORDINATE_STATUS_NON_MAX,
 };
 
 typedef struct {
@@ -33,8 +31,6 @@ public:
 
 public:
 	std::string GetLifeMap();
-	void SkipOverTime(unsigned long ulTime);
-	void RandSetNoSpace();
 	void SkipOneTime();
 
 private:
